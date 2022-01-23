@@ -1,25 +1,28 @@
 <template>
-  <div>
-    <div class="container">
-      <div class="cards" v-for="(book, i) in value.books" :key="i">
-        <div class="card">
-          <h1 class="book-title">{{ book.title }}</h1>
-          <p class="book-rank"> #{{ book.rank }}</p> 
-          <div class="image">
-            <img :src="book.book_image" alt="Book Image" />
-          </div>
-          <div class="card-body">
-            <p class="author">{{ book.author }}</p>
-            <p class="description">{{ book.description }}</p>
-            <p class="isbn13">{{ book.isbn13 }}</p>
-          </div>
-          <button class="button button-link">
-            <a :href="book.amazon_product_url">Buy on Amazon</a>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <v-container grid-list-xs>
+    <v-row >
+      <v-col v-for="(book, i) in value.books" :key="i" cols="4" class="d-flex align-stretch">
+          <v-card class="pa-5 d-flex justify-around flex-column" elevation="1"> 
+            <h1 class="text-h5 font-weight-bold ">{{book.title}}</h1>
+            <p class="book-rank"> #{{ book.rank }}</p>
+            <v-img :src="book.book_image"></v-img>
+            <v-row>
+              <v-col>
+                <p class="author">{{ book.author }}</p>
+                <p class="description">{{ book.description }}</p>
+                <code class="isbn13">ISBN: {{ book.primary_isbn13 }}</code>
+              </v-col>
+            </v-row>
+            <v-btn
+              color="primary"
+              depressed
+              elevation="2"
+              large
+            >Buy from Amazon</v-btn>
+          </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

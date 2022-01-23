@@ -1,23 +1,22 @@
 <template>
-  <v-container grid-list-xs>
+  <v-container >
     <v-row v-if="loading" class="d-inline text-center">
-        <h1>Loading....</h1>
-      </v-row>
+      <h1>Loading....</h1>
+    </v-row>
     <v-row v-else>
-      <v-col>
+      <v-col cols="6" class="mx-auto">
         <v-select
           @change="changeCategory"
           name="seller-select"
-          outline
+          outlined
           dense
           label="Select Category"
           :items="selectOptions"
-        ></v-select>
+        ></v-select> 
       </v-col>
-      <v-row>
-        <book-cards-vue :value="listItem">
-        </book-cards-vue>
-      </v-row>
+    </v-row>
+    <v-row>
+      <book-cards-vue :value="listItem"></book-cards-vue>
     </v-row>
   </v-container>
 </template>
@@ -59,8 +58,8 @@ export default {
     this.loading = false
   },
   computed: {
-    selectOptions(){
-      let data = this.lists.map((x) => ({text: x.display_name, value: x.list_id})  )
+    selectOptions() {
+      let data = this.lists.map((x) => ({ text: x.display_name, value: x.list_id }))
       return data
     }
   }
